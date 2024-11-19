@@ -1,32 +1,34 @@
-def celsius_to_fahrenheit(celsius):
-    return (celsius * 9/5) + 32
-
-def celsius_to_kelvin(celsius):
-    return celsius + 273.15
-
-def fahrenheit_to_celsius(fahrenheit):
-    return (fahrenheit - 32) * 5/9
-
-def fahrenheit_to_kelvin(fahrenheit):
-    return celsius_to_kelvin(fahrenheit_to_celsius(fahrenheit))
-
-def kelvin_to_celsius(kelvin):
-    return kelvin - 273.15
-
-def kelvin_to_fahrenheit(kelvin):
-    return celsius_to_fahrenheit(kelvin_to_celsius(kelvin))
-
-def convert_temperature(value, from_scale, to_scale):
-    if from_scale == to_scale:
-        return value
-
-    if from_scale == "Celsius":
-        if to_scale == "Fahrenheit":
-            return celsius_to_fahrenheit(value)
-        elif to_scale == "Kelvin":
-            return celsius_to_kelvin(value)
-
-    if from_scale == "Fahrenheit":
+* C program to perform temperature conversion using function (macros)
+ */
+ 
+#include<stdio.h>
+//FUNCTION LIKE MACROS IN C LANGUAGE ->
+#define CelsiusToKelvin(Celsius)(Celsius + 273.15)
+#define CelsiusToFahrenheit(Celcius)( (Celsius * 1.8) + 32.0)
+ 
+#define KelvintoCelsius(Kelvin) (Kelvin - 273.15)
+#define KelvinToFahrenheit(Kelvin)((Kelvin - 273.15) * 1.8 + 32.0)
+ 
+#define FahrenheitToCelsius(Fahrenheit) ((Fahrenheit - 32.0) * 5/9)
+#define FahrenhietToKelvin(Fahrenheit) ((Fahrenheit - 32.0) * 5/9 + 273.15)
+ 
+int main()
+{
+    float Celsius, Kelvin, Fahrenheit;
+ 
+    Celsius = 150.0;
+    printf("150-degree   Celsius  = %f-degree   Kelvin \n ",CelsiusToKelvin(Celsius));
+    printf("150-degree   Celsius =  %f-degree Fahrenheit\n ",CelsiusToFahrenheit(Celsius));
+ 
+    Kelvin = 150.0;
+    printf("150-degree   Kelvin  = %f-degree   Celsius \n",KelvintoCelsius(Kelvin));
+    printf("150-degree   Kelvin  = %f-degree Fahrenheit \n",KelvinToFahrenheit(Kelvin));
+ 
+    Fahrenheit = 150.0;
+    printf("150-degree Fahrenheit =  %f-degree   Celsius \n",FahrenheitToCelsius(Fahrenheit));
+    printf("150-degree Fahrenheit =  %f-degree   Kelvin \n",FahrenhietToKelvin(Fahrenheit));
+    return 0;
+}
         if to_scale == "Celsius":
             return fahrenheit_to_celsius(value)
         elif to_scale == "Kelvin":
